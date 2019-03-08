@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="static/js/echarts.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <title>TimeVis</title>
+</head>
+<body style="background:#f3f3f3">
+
+    <h1>Time Visualization</h1>
+
+
+    <div class="board_up" id="up">
+        <div id="up_left" style="width: 324px; height:500px; position: absolute;left:5%;">
+            <div id="up_left_up" style="width: 100%;height:50%;margin: auto;"></div>
+            <div id="up_left_down" style="width: 100%;height:50%;margin: auto"></div>
+        </div>
+        <div id="up_right" style="width: 756px;height:500px;position: relative;margin: auto 0 auto auto;">
+            <div id="up_right_chart" style="width: 100%;height:400px;margin: 50px auto;"></div>
+        </div>
+    </div>
+    <div class="board_down" id="down" style="width: 1080px;height:450px;"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var calChart = echarts.init(document.getElementById('up_left_up'));
+        var pieChart = echarts.init(document.getElementById('up_left_down'));
+        var timeChart = echarts.init(document.getElementById('up_right_chart'));
+        var anaChart = echarts.init(document.getElementById('down'));
+    </script>
+
+    <script src="static/js/data.js"></script>
+    <script src="static/js/timeChart.js"></script>
+    <script src="static/js/pieChart.js"></script>
+    <script src="static/js/calChart.js"></script>
+    <script src="static/js/anaChart.js"></script>
+
+    <script>
+        var rawdata = {};
+        var catching = true;
+        $.getJSON('/data', function (rawData) {
+            rawdata = rawData;
+            catching = false;
+        });
+
+        function delay() {
+            if(catching) {
+                setTimeout("delay()", 300);
+            }else{
+                genData();
+                anaChart.setOption(anaChart_option());
+                calChart.setOption(calChart_option(rawdata.now.substring(0,7)));
+                pieChart.setOption(pieChart_option(rawdata.now));
+                timeChart.setOption(timeChart_option());
+            }
+        }
+
+        delay();
+    
+    </script>
+    
+</body>
+</html>
+
+<style>
+    h1 {
+        color: #000000;
+        text-align:center;
+        margin-top: 4.5%;
+        margin-bottom: 1.5%;
+        font-family:"Modern No. 20";
+        font-size:55px;
+    }
+    .board_up {
+        background: #ffffff;
+        box-shadow: 0px 0px 20px 3px #e5e5e5;
+        border-radius:5px;
+        padding:20px 60px; 
+        margin: 0 auto 15px auto ;
+        width: 1080px;
+        height: 500px;
+    }
+    .board_down {
+        background: #ffffff;
+        box-shadow: 0px 0px 20px 3px #e5e5e5;
+        border-radius:5px;
+        padding:20px 60px; 
+        margin: 0 auto 15px auto ;
+        width: 1080px;
+        height: 450px;
+    }
+</style>
