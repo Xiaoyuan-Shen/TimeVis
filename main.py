@@ -38,6 +38,8 @@ def data():
                     c_task = dict(name=str(task),starttime=d_time)
             else:
                 c_task = dict(name=str(task),starttime=d_time)
+        c_task['endtime'] = d_time
+        li.append(c_task)
         d[s[1].strftime('%Y-%m-%d')] = li
     
     data = dict(data=d, colors=colors, islearn=learn, totaltime=35*30, now=datetime.datetime.now().strftime('%Y-%m-%d'))
