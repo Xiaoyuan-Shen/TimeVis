@@ -15,14 +15,14 @@ def index():
 
 @app.route('/data', methods=['GET'])
 def data():
-    df = pd.read_excel(file)
-    settings_color = pd.read_excel(file,1)
-    settings_learn = pd.read_excel(file,2)
+    df = pd.read_excel(excel_file)
+    settings_color = pd.read_excel(excel_file,1)
+    settings_learn = pd.read_excel(excel_file,2)
     start_time = datetime.time(7)
     learn = list(settings_learn.columns)
     colors = settings_color.T.to_dict()[0]
     d = dict()
-    for index, s in df.sort_values('日期', ascending=False).iterrows():
+    for index, s in df.sort_values('日期', ascending=time_ascending).iterrows():
     #     print(s)
         li = []
         c_task = None

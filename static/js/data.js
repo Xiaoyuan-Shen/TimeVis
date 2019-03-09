@@ -35,7 +35,7 @@ function genData(){
         timedata.cata.push(key.replace('-','.').replace('-','.'))
 
         // cal
-        caldata.push([key,(cal_heat*100/rawdata.totaltime).toFixed(0)]);
+        caldata.push([key,(((cal_heat/rawdata.totaltime)-0.5)*2*100+50).toFixed(0)]);
 
         // pie
         var pielist = [];

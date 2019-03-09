@@ -22,7 +22,7 @@ A simple time visualization website.
 
 ### Requirements & Installation
 
-- Python3
+- Python3 is required on your computer
 
 ```bash
 cd YourWorkSpace
@@ -30,6 +30,14 @@ git clone https://github.com/Xiaoyuan-Shen/TimeVis.git
 python3 main.py
 ```
 
+- You are able to change some settings in `setting.py` just follow the comments.
+
+- The excel file has 3 forms:
+  1. data
+  2. color settings
+  3. items that means learning
+
+- You can DIY your own settings just follow the original format.
 
 ### Other
 - You can use the color cards on this website to find the color you want. https://www.materialui.co/colors
