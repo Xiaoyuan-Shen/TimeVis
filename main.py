@@ -1,11 +1,11 @@
 import pandas as pd
 import json
 import datetime
+from settings import *
 from dateutil import parser
 from flask import Flask, render_template, Response, request, redirect, session
 
 app = Flask(__name__)
-file = 'D:/jupyter/每日时间分配-详记.xlsx'
 
 @app.route('/', methods=['GET'])
 def index():
@@ -74,5 +74,4 @@ def data():
 
 
 if __name__ == '__main__':
-    port = 1998
-    app.run('127.0.0.1', port = port, debug=True, use_reloader=False)
+    app.run(server_ip, port = port, debug=True, use_reloader=False)
